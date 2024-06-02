@@ -18,8 +18,10 @@ class CustomUser(AbstractUser):
 
 class Account(models.Model):
     id = models.AutoField(primary_key=True)
-    email = models.TextField(max_length=200)
+    email = models.EmailField(max_length=200, unique=True)
     password = models.TextField(default="12345")
+
+    objects = models.Manager()
 
     def __str__(self):
         return self.id
@@ -35,6 +37,8 @@ class Survey(models.Model):
     respondent = models.ForeignKey('Respondent', on_delete=models.CASCADE)
     result = models.JSONField()
     creation_time = models.TimeField()
+
+    objects = models.Manager()
 
     def __str__(self):
         return self.id

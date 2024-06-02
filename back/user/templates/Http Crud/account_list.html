@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Accounts</title>
+</head>
+<body>
+    <h1>Accounts</h1>
+    <a href="{% url 'account_create' %}">Create new account</a>
+    <ul>
+        {% for account in accounts %}
+            <li>
+                <a href="{% url 'account_detail' account.pk %}">{{ account.email }}</a>
+                <a href="{% url 'account_edit' account.pk %}">Edit</a>
+                <form action="{% url 'account_delete' account.pk %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</

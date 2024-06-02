@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ account.email }}</title>
+</head>
+<body>
+    <h1>{{ account.email }}</h1>
+    <p>Password: {{ account.password }}</p>
+    <a href="{% url 'account_edit' account.pk %}">Edit</a>
+    <form action="{% url 'account_delete' account.pk %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    <a href="{% url 'account_list' %}">Back to list</a>
+</body>
+</html>
